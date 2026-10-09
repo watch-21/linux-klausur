@@ -16,23 +16,33 @@ echo "2.Benutzer und Date"
 sleep 2
 
 useradd -m -s /bin/bash jana
+
 useradd -m -s /bin/bash yusuf
+
 useradd -M -s /bin/bash kim
 
 groupadd leitung
+
 groupadd werft
 
 usermod -aG werft,leitung,sudo jana
+
 usermod -aG werft yusuf
+
 usermod -aG werft kim
 
 mkdir -p /home/jana/Team /home/jana/Logs
+
 mkdir -p /home/yusuf/Dokumente /home/yusuf/Backup
+
 mkdir -p /srv/halle
 
 chown -R jana:leitung /home/jana/Team /home/jana/Logs
+
 chown -R yusuf:werft /home/yusuf/Dokumente /home/yusuf/Backup
+
 chown kim:werft /srv/halle
+
 chmod 770 /srv/halle
 
 # Die Zugangsdaten
@@ -40,20 +50,24 @@ chmod 770 /srv/halle
 git clone http://94.16.105.22:8080/pruefung/zugaenge.git /home/jana/Team/Zugangsdaten
 
 chown -R jana:leitung /home/jana/Team/Zugangsdaten
+
 chmod 700 /home/jana/Team/Zugangsdaten
+
 chmod 600 /home/jana/Team/Zugangsdaten/jana.txt /home/jana/Team/Zugangsdaten/yusuf.txt /home/jana/Team/Zugangsdaten/kim.txt
 
 chpasswd < /home/jana/Team/Zugangsdaten/jana.txt
+
 chpasswd < /home/jana/Team/Zugangsdaten/yusuf.txt
+
 chpasswd < /home/jana/Team/Zugangsdaten/kim.txt
 
 # 3.Alias, Variable und versteckte Datei
 
-echo "3. Alias, Variable und versteckte Datei"
+echo "3.Alias, Variable und versteckte Datei"
 sleep 2
 
 echo "alias update_sys='sudo apt update && sudo apt upgrade -y'" >> /home/jana/.bashrc
-echo 'export FIRMA="Elbwerft GmbH"' >> /home/jana/.bashrc
+echo 'export FIRMA="elbwerft GmbH"' >> /home/jana/.bashrc
 chown jana:jana /home/jana/.bashrc
 
 touch /home/jana/.werft
